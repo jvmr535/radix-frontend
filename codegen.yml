@@ -1,0 +1,27 @@
+schema: http://localhost:6001/graphql
+documents: "./src/**/*.graphql"
+generates:
+  ./src/infra/graphql/generated/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      reactApolloVersion: 3
+  ./src/infra/graphql/generated/page.tsx:
+    plugins:
+      - graphql-codegen-apollo-next-ssr
+    preset: import-types
+    presetConfig:
+      typesPath: ./graphql
+    config:
+      reactApolloVersion: 3
+      apolloClientInstanceImport: "@/infra/apollo"
+      contextType: "ApolloClientContext"
+      contextTypeRequired: true
+      withHOC: false
+      withHooks: true
+
+hooks:
+  afterAllFileWrite:
+    - prettier --write
