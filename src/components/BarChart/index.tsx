@@ -8,7 +8,6 @@ import {
   ResponsiveContainer,
   XAxis,
   YAxis,
-  Tooltip,
   LabelList,
 } from "recharts";
 
@@ -18,43 +17,35 @@ type BarChartProps = {
 
 export default function BarChart({ data }: BarChartProps): JSX.Element {
   return (
-    <ResponsiveContainer width="50%" height={450}>
-      <RechartsBarChart
-        width={500}
-        height={300}
-        data={data}
-        margin={{
-          top: 5,
-          right: 30,
-          left: 20,
-          bottom: 5,
-        }}
-      >
+    <ResponsiveContainer width="100%" height={400}>
+      <RechartsBarChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
           dataKey="period"
+          tick={{ fontSize: 10 }}
           label={{
             position: "insideBottom",
             offset: -5,
             fill: "hsl(var(--primary))",
+            style: { fontSize: 14 },
           }}
         />
         <YAxis
           dataKey="value"
+          tick={{ fontSize: 12 }}
           label={{
-            value: "Valor",
+            value: "Média",
             angle: -90,
             position: "insideLeft",
             fill: "hsl(var(--primary))",
-            style: { fontWeight: "bold", padding: 10 },
+            style: { fontWeight: "bold", fontSize: 14 },
           }}
         />
-        <Tooltip />
-        <Bar dataKey="value" barSize={50} fill="#2A1844">
+        <Bar dataKey="value" barSize={100} fill="#2A1844">
           <LabelList
             dataKey="value"
             position="top"
-            style={{ fill: "hsl(var(--primary))" }}
+            style={{ fill: "hsl(var(--primary))", fontSize: 12 }}
           />
         </Bar>
       </RechartsBarChart>

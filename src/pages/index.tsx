@@ -8,8 +8,8 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
-        <title>Home</title>
-        <meta name="description" content="Lista de posts" />
+        <title>Radix Sensores</title>
+        <meta name="description" content="Radix Sensores" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

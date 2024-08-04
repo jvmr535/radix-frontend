@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
@@ -6,6 +8,7 @@ import { NextUIProvider } from "@nextui-org/react";
 import { ReactElement, ReactNode } from "react";
 import { NextPage } from "next";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { AuthProvider } from "@/contexts";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -26,11 +29,12 @@ export default function App({
     <NextUIProvider>
       <CookiesProvider>
         <QueryClientProvider client={queryClient}>
-          {/* <AuthProvider> */}
-          <ErrorBoundary hasError={false}>
-            {getLayout(<Component {...pageProps} />)}
-          </ErrorBoundary>
-          {/* </AuthProvider> */}
+          <ToastContainer />
+          <AuthProvider>
+            <ErrorBoundary hasError={false}>
+              {getLayout(<Component {...pageProps} />)}
+            </ErrorBoundary>
+          </AuthProvider>
         </QueryClientProvider>
       </CookiesProvider>
     </NextUIProvider>
