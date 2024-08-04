@@ -1,9 +1,19 @@
 import { useMutation, UseMutationResult } from "@tanstack/react-query";
-import api from "@/clients/api.client";
 import {
   ISensorPeriodAverageResponse,
   ISignInResponse,
 } from "@/types/interfaces";
+import { api } from "@/clients/api.client";
+import Cookies from "js-cookie";
+
+api.interceptors.request.use((config) => {
+  const token = Cookies.get("jwt");
+  if (token) {
+    // eslint-disable-next-line no-param-reassign
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
 export const useGetSensorAveragesDataLazyQuery = (
   equipmentId: string,
