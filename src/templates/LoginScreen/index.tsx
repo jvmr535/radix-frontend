@@ -12,8 +12,8 @@ export default function LoginScreen(): JSX.Element {
   const { accessToken, signIn } = useAuthContext();
 
   const [loginCredentials, setLoginCredentials] = useState({
-    Username: "",
-    Password: "",
+    username: "",
+    password: "",
   });
 
   const { mutateAsync, isPending } = useSignInMutation();
@@ -64,21 +64,21 @@ export default function LoginScreen(): JSX.Element {
         <CardBody className="overflow-hidden">
           <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
             <Input
-              name="Username"
+              name="username"
               className="w-full"
               isRequired
               label="E-mail"
               placeholder="E-mail"
               type="email"
-              onChange={(event) => handleChange(event, "Username")}
+              onChange={(event) => handleChange(event, "username")}
             />
             <Input
-              name="Password"
+              name="password"
               isRequired
               label="Senha"
               placeholder="Senha"
               type="password"
-              onChange={(event) => handleChange(event, "Password")}
+              onChange={(event) => handleChange(event, "password")}
             />
             <div className="flex gap-2 justify-end">
               <Button

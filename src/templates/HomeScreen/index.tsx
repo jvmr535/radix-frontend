@@ -3,6 +3,7 @@ import { useGetSensorAveragesDataLazyQuery } from "@/hooks/requests.hook";
 import { Button, Input } from "@nextui-org/react";
 import { Search } from "lucide-react";
 import { useState } from "react";
+import { checkIfSersorDataIsValid } from "./helpers";
 
 export default function HomeScreen(): JSX.Element {
   const [equipamentId, setEquipamentId] = useState<string>("");
@@ -34,11 +35,14 @@ export default function HomeScreen(): JSX.Element {
         </Button>
       </div>
 
-      {data && data !== undefined && (
-        <div className="w-full max-w-3xl">
-          <BarChart data={data} key="bar-chart" />
-        </div>
-      )}
+      {data &&
+        (checkIfSersorDataIsValid(data) ? (
+          <div className="w-full max-w-3xl">
+            <BarChart data={data} key="bar-chart" />
+          </div>
+        ) : (
+          <div>Não foram encontrados dados deste equipamento</div>
+        ))}
     </div>
   );
 }

@@ -33,19 +33,19 @@ export const useGetSensorAveragesDataLazyQuery = (
 export const useSignInMutation = (): UseMutationResult<
   ISignInResponse,
   Error,
-  { Username: string; Password: string },
+  { username: string; password: string },
   unknown
 > => {
   const signIn = async ({
-    Username,
-    Password,
+    username,
+    password,
   }: {
-    Username: string;
-    Password: string;
+    username: string;
+    password: string;
   }): Promise<ISignInResponse> => {
     const response = await api.post<ISignInResponse>("/access/signIn", {
-      Username,
-      Password,
+      username,
+      password,
     });
     return response.data;
   };
